@@ -1,19 +1,19 @@
 {
-  "name": "n8n-nodes-<...>",
-  "version": "0.1.0",
-  "description": "",
-  "keywords": [
-    "n8n-community-node-package"
-  ],
+	"name": "n8n-nodes-llamaCpp",
+	"version": "0.1.0",
+	"description": "n8n node to call local llama-cpp to load models on Tesla K80",
+	"keywords": [
+		"n8n-community-node-package"
+	],
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Shailendra Kumar",
+    "email": "kumarshai@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/shailendra-repo/n8n-nodes-llama-cpp.git"
   },
   "engines": {
     "node": ">=18.10",
@@ -33,17 +33,15 @@
   "files": [
     "dist"
   ],
-  "n8n": {
-    "n8nNodesApiVersion": 1,
-    "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
-    ],
-    "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
-    ]
-  },
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/LlamaCppApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/NasaPics/LlamaCpp.node.js"
+		]
+	},
   "devDependencies": {
     "@typescript-eslint/parser": "^7.15.0",
     "eslint": "^8.56.0",
