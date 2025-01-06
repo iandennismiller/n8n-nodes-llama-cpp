@@ -1,5 +1,4 @@
 import {
-	IAuthenticateGeneric,
 	ICredentialType,
 	INodeProperties,
 	ICredentialTestRequest
@@ -18,16 +17,6 @@ export class LlamaCppApi implements ICredentialType {
 			default: 'http://localhost:8000/v1',
 		},
 	];
-
-	authenticate: IAuthenticateGeneric = {
-		type: 'generic',
-		properties: {
-			qs: {
-				// 'base_url': '={{$credentials.baseUrl}}'
-			}
-		},
-	};
-
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials?.baseUrl}}',
