@@ -21,7 +21,7 @@ export class LlamaCpp implements INodeType {
             },
         ],
         requestDefaults: {
-            baseURL: '={{$credentials?.baseUrl}}',
+            baseURL: '={{$credentials.baseUrl}}',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export class LlamaCpp implements INodeType {
                         description: 'Query from LLM',
                         routing: {
                             request: {
-                                method: 'GET',
+                                method: 'POST',
                                 url: '/completions',
                             },
                         },
