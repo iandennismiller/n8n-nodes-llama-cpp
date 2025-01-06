@@ -21,7 +21,7 @@ export class LlamaCpp implements INodeType {
             },
         ],
         requestDefaults: {
-            baseURL: 'https://localhost:8000',
+            baseURL: 'http://localhost:8000',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -62,16 +62,13 @@ export class LlamaCpp implements INodeType {
                         routing: {
                             request: {
                                 method: 'GET',
-                                url: '/llm',
+                                url: '/v1/llm',
                             },
                         },
                     },
                 ],
                 default: 'get',
             },
-
-            // Optional/additional fields will go here
-        
         ]
 	};
 }

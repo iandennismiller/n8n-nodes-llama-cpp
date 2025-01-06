@@ -7,24 +7,31 @@ import {
 export class LlamaCppApi implements ICredentialType {
 	name = 'llamaCppApi';
 	displayName = 'Llama Cpp API';
-	// Uses the link to this tutorial as an example
-	// Replace with your own docs links when building your own nodes
-	documentationUrl = 'https://localhost:8000/docs';
+	// documentationUrl = 'https://localhost:8000/docs';
+
 	properties: INodeProperties[] = [
 		{
-			displayName: 'API Key',
-			name: 'apiKey',
+			displayName: 'llama.cpp URL',
+			name: 'baseUrl',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
 		},
 	];
-	authenticate: IAuthenticateGeneric = {
-		type: 'generic',
-		properties: {
-			qs: {
-				'api_key': '={{$credentials.apiKey}}'
-			}
+
+	// authenticate: IAuthenticateGeneric = {
+	// 	type: 'generic',
+	// 	properties: {
+	// 		qs: {
+	// 			'base_url': '={{$credentials.baseUrl}}'
+	// 		}
+	// 	},
+	// };
+
+	test = {
+		request: {
+			baseURL: '={{$credentials.baseUrl}}',
+			url: '/v1/models',
 		},
 	};
 }
