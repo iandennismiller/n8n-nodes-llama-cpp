@@ -27,7 +27,7 @@ pnpm install n8n-workflow
 4. Install and build the custom node
 
 ```bash
-cd ~/.n8n/git/REPO
+cd ~/.n8n/git/n8n-nodes-llama-cpp
 NODE_ENV=dev pnpm install
 NODE_ENV=dev pnpm build
 ```
@@ -36,7 +36,7 @@ NODE_ENV=dev pnpm build
 
 ```bash
 cd ~/.n8n/custom
-NODE_ENV=dev pnpm link ~/.n8n/git/REPO
+NODE_ENV=dev pnpm link ~/.n8n/git/n8n-nodes-llama-cpp
 ```
 
 6. Restart n8n
