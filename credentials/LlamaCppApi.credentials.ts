@@ -6,12 +6,12 @@ import {
 
 export class LlamaCppApi implements ICredentialType {
 	name = 'llamaCppApi';
-	displayName = 'Llama Cpp API';
+	displayName = 'llama.cpp server (and OAI-compatible)';
 	documentationUrl = '';
 
 	properties: INodeProperties[] = [
 		{
-			displayName: 'llama.cpp OpenAI endpoint',
+			displayName: 'OpenAI-compatible base URL',
 			name: 'baseUrl',
 			type: 'string',
 			default: 'http://localhost:8000/v1',

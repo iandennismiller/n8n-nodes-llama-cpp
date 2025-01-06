@@ -8,7 +8,7 @@ export class LlamaCpp implements INodeType {
         group: ['transform'],
         version: 1,
         subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-        description: 'Get data Llama Cpp API',
+        description: 'Interface with llama.cpp server or other OpenAI-compatible server',
         defaults: {
             name: 'Llama CPP',
         },
@@ -35,11 +35,11 @@ export class LlamaCpp implements INodeType {
                 noDataExpression: true,
                 options: [
                     {
-                        name: 'LLM Query',
-                        value: 'llm',
+                        name: 'Default model',
+                        value: 'default',
                     }
                 ],
-                default: 'llm',
+                default: 'default',
             },
             {
                 displayName: 'Operation',
@@ -49,28 +49,28 @@ export class LlamaCpp implements INodeType {
                 displayOptions: {
                     show: {
                         resource: [
-                            'llm',
+                            'default',
                         ],
                     },
                 },
                 options: [
                     {
-                        name: 'Get',
-                        value: 'get',
-                        action: 'Get the response from LLM',
-                        description: 'Query from LLM',
+                        name: 'Completion',
+                        value: 'completion',
+                        action: 'completion',
+                        description: 'Pass $json["chatInput"] to LLM and return the completion',
                         routing: {
                             request: {
                                 method: 'POST',
                                 url: '/completions',
                                 body: {
-                                    prompt: '={{$json["chatInput"]}}',
+                                    prompt: 'You are a helpful assistant...\n\n={{$json["chatInput"]}}',
                                 },
                             },
                         },
                     },
                 ],
-                default: 'get',
+                default: 'completion',
             },
         ]
 	};
