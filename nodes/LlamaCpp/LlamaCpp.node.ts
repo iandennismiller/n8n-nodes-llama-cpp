@@ -62,7 +62,7 @@ export class LlamaCpp implements INodeType {
                         routing: {
                             request: {
                                 method: 'GET',
-                                url: '/llm',
+                                url: '/completions',
                             },
                         },
                     },
