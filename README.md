@@ -1,45 +1,45 @@
 ![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
 
-# n8n-nodes-starter
+## Docker Installation
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](n8n.io). It includes the node linter and other dependencies.
+This process assumes there is a docker volume called `n8n_data` which is visible to the container at `~/.n8n`
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+1. Clone repo into `/var/lib/docker/volumes/n8n_data/_data/git`
 
-## Prerequisites
+```bash
+cd /var/lib/docker/volumes/n8n_data/_data/git
+git clone https://github.com/iandennismiller/n8n-nodes-llama-cpp.git
+chown -R 1000:1000 n8n-nodes-llama-cpp
+```
 
-You need the following installed on your development machine:
+2. Enter n8n docker container with `docker exec -it n8n sh`
 
-* [git](https://git-scm.com/downloads)
-* Node.js and pnpm. Minimum version Node 18. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  pnpm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+3. Create and initialize custom folder (once; this does not need to be repeated)
 
-## Using this starter
+```bash
+cd ~/.n8n
+mkdir custom
+cd custom
+pnpm init
+pnpm install n8n-workflow
+```
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+4. Install and build the custom node
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `pnpm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `pnpm lint` to check for errors or `pnpm lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+```bash
+cd ~/.n8n/git/REPO
+NODE_ENV=dev pnpm install
+NODE_ENV=dev pnpm build
+```
 
-## More information
+5. Move to the custom folder and link the new node
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+```bash
+cd ~/.n8n/custom
+NODE_ENV=dev pnpm link ~/.n8n/git/REPO
+```
+
+6. Restart n8n
 
 ## License
 
