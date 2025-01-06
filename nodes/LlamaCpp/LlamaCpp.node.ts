@@ -16,7 +16,7 @@ export class LlamaCpp implements INodeType {
         outputs: ['main'],
         credentials: [
             {
-                name: 'LlamaCppApi',
+                name: 'llamaCppApi',
                 required: false,
             },
         ],
