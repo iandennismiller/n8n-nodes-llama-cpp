@@ -63,7 +63,7 @@ export class LlamaCpp implements INodeType {
                             request: {
                                 method: 'POST',
                                 url: '/completions',
-                                json: true,
+                                // json: true,
                                 body: {
                                     prompt: '={{$inputs["main"]}}',
                                 },
