@@ -21,7 +21,7 @@ export class LlamaCpp implements INodeType {
             },
         ],
         requestDefaults: {
-            baseURL: 'http://localhost:8000',
+            baseURL: '={{$credentials?.baseUrl}}',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
