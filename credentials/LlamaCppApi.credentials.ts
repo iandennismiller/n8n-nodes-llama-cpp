@@ -8,30 +8,30 @@ import {
 export class LlamaCppApi implements ICredentialType {
 	name = 'llamaCppApi';
 	displayName = 'Llama Cpp API';
-	documentationUrl = 'https://localhost:8000/docs';
+	documentationUrl = '';
 
 	properties: INodeProperties[] = [
 		{
-			displayName: 'llama.cpp URL',
+			displayName: 'llama.cpp OpenAI endpoint',
 			name: 'baseUrl',
 			type: 'string',
-			default: 'http://localhost:8000',
+			default: 'http://localhost:8000/v1',
 		},
 	];
 
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
-			// qs: {
-			// 	'base_url': '={{$credentials.baseUrl}}'
-			// }
+			qs: {
+				// 'base_url': '={{$credentials.baseUrl}}'
+			}
 		},
 	};
 
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials?.baseUrl}}',
-			url: '/v1/models',
+			url: '/models',
 		},
 	};
 }
